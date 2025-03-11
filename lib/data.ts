@@ -1,5 +1,5 @@
 export interface ProjectsData {
-  id: number;
+  uid: number;
   name: string;
   icon?: string;
   caseContent: string;
@@ -10,7 +10,7 @@ export interface ProjectsData {
 
 export const projects: ProjectsData[] = [
   {
-    id: 1,
+    uid: 1,
     name: "Proyecto Alcance",
     caseContent: "This is a case study about Project Alpha.",
     link: "https://proyectoalcance.org",
@@ -18,7 +18,7 @@ export const projects: ProjectsData[] = [
     toolsUse: ["Wix Studios"],
   },
   {
-    id: 2,
+    uid: 2,
     name: "Regreso a Casa",
     caseContent: "This is a case study about Project Beta.",
     link: "https://yoregresoacasa.org",
@@ -26,7 +26,7 @@ export const projects: ProjectsData[] = [
     toolsUse: ["React", "Vite", "Firebase"],
   },
   {
-    id: 3,
+    uid: 3,
     name: "Yaya Ai",
     caseContent: "This is a case study about Project Gamma.",
     link: "https://yayaai.vercel.app/",

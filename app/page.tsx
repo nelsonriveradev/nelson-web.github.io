@@ -10,10 +10,11 @@ import ProjectsCard from "./Components/ProjectsCards";
 //data
 import { projects } from "@/lib/data";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient();
+  const { data } = await supabase.from("proyectos").select();
   return (
     <div className="bg-zinc-800 w-[90%] mx-auto ">
-      <NavBar />
       {/* Hero */}
       <div className="grid grid-cols-2  h-auto mt-10  ">
         <div className="  flex items-center w-[95%]">
@@ -65,8 +66,8 @@ export default function Home() {
           Proyectos
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-5">
-          {projects.map((project) => (
-            <ProjectsCard key={project.id} {...project} />
+          {data?.map((project) => (
+            <ProjectsCard key={project.uid} {...project} />
           ))}
         </div>
       </div>

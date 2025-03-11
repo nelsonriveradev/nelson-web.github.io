@@ -1,7 +1,18 @@
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
+import { auth, currentUser } from "@clerk/nextjs/server";
 
-export default function NavBar() {
+export default async function NavBar() {
+  const { userId } = await auth();
+
   return (
     <div className="flex">
       <nav className="flex items-center justify-between h-14 py-4 px-6 bg-zinc-300 w-1/2 mx-auto mt-8 rounded-2xl ">
@@ -33,6 +44,17 @@ export default function NavBar() {
               </a>
             </li>
           </ul>
+        </div>
+        <div className="">
+          <ClerkProvider>
+            {userId ? (
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            ) : (
+              <SignUpButton className="text-zinc-200 bg-zinc-800 text-lg px-2 py-1 rounded-lg" />
+            )}
+          </ClerkProvider>
         </div>
       </nav>
     </div>
