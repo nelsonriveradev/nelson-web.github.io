@@ -4,11 +4,11 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
-export default async function ProjectDetail({
-  params,
-}: {
-  params: { projectUid: Promise<any> };
-}) {
+interface ProjectDetailProps {
+  params: { projectUid: Promise<string> };
+}
+
+export default async function ProjectDetail({ params }: ProjectDetailProps) {
   const { projectUid } = params;
   console.log("Received projectUid:", projectUid); // Debugging line
 
@@ -36,7 +36,7 @@ export default async function ProjectDetail({
 
   const response = data[0];
   return (
-    <div className="">
+    <div>
       <div className="flex flex-col items-center gap-y-3 mt-10">
         <h1 className="text-4xl text-bold">{response.name}</h1>
         <p>{response.description}</p>
