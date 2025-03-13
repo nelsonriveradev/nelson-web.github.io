@@ -7,7 +7,7 @@ import rehypeRaw from "rehype-raw";
 export default async function ProjectDetail({
   params,
 }: {
-  params: { projectUid: string };
+  params: { projectUid: Promise<string> };
 }) {
   const { projectUid } = params;
   console.log("Received projectUid:", projectUid); // Debugging line
@@ -34,7 +34,6 @@ export default async function ProjectDetail({
     return <div>No project found</div>;
   }
 
-  console.log(data);
   const response = data[0];
   return (
     <div className="">
