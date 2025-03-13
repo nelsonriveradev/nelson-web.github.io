@@ -4,13 +4,12 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
-interface ProjectDetailProps {
-  params: { projectUid: string };
-}
-
-export default async function ProjectDetail({ params }: ProjectDetailProps) {
-  const { projectUid } = params;
-  console.log("Received projectUid:", projectUid); // Debugging line
+export default async function ProjectDetail({
+  params,
+}: {
+  params: Promise<{ projectUid: string }>;
+}) {
+  const { projectUid } = await params;
 
   if (!projectUid) {
     console.error("projectUid is undefined");
