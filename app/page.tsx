@@ -31,9 +31,9 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className=" flex items-center justify-center ">
+        <div className=" flex items-center justify-center slowBounce ">
           <Image
-            className="border-8 border-zinc-300 rounded-4xl"
+            className="border-8 border-zinc-300 rounded-4xl "
             src="/images/nelson_rivera-1.jpg"
             width={400}
             height={400}
@@ -48,10 +48,14 @@ export default async function Home() {
           <div className="w-5/6 bg-white text-zinc-800 rounded-2xl p-4">
             <h2 className="text-zinc-800 text-4xl font-bold">Sobre mí</h2>
             <p className="text-zinc-800 text-lg mt-2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure,
-              atque laudantium! Beatae eius ea, placeat, quas, praesentium totam
-              voluptas dolore repudiandae magni fuga voluptatem ducimus
-              doloremque nulla dolor officia iure!
+              ¡Hola! Soy Nelson Rivera, un desarrollador web enfocado en la
+              creación de sistemas que aporten valor a tu negocio o idea. Mi
+              experiencia abarca tecnologías como Next.js, Tailwind CSS,
+              Firebase y Supabase, permitiéndome construir soluciones web
+              robustas y eficientes. Siempre en busca de nuevos desafíos, mi
+              próxima meta es incursionar en el desarrollo de aplicaciones
+              móviles, expandiendo mis habilidades y ofreciendo soluciones aún
+              más completas.
             </p>
           </div>
           <div className="flex flex-col items-start">

@@ -40,7 +40,7 @@ export default async function ProjectDetail({
     <div className="">
       <div className="flex flex-col items-center gap-y-3 mt-10">
         <h1 className="text-4xl text-bold">{response.name}</h1>
-        <p>Here is the description</p>
+        <p>{response.description}</p>
 
         <Image
           className="rounded-lg border-2 border-zinc-200 p-2 bg-zinc-200 drop-shadow-md mx-auto self-center"

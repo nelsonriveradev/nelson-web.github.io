@@ -1,3 +1,5 @@
+"use client";
+import ContactForm from "../Components/ContactForm";
 export default function Contacto() {
   return (
     <div className="">
@@ -7,6 +9,9 @@ export default function Contacto() {
           Si deseas contactarme, puedes hacerlo a través de mi correo
           electrónico:
         </p>
+        {/* Contact Form */}
+
+        <ContactForm />
       </div>
     </div>
   );

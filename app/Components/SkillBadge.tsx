@@ -22,7 +22,7 @@ export default function SkillBadge({
       <HoverCard>
         <HoverCardTrigger>
           <Badge className="px-2 py-1 bg-zinc-200 text-zinc-800 text-md cursor-pointer max-w-fit-content">
-            <Image src={icon} width={30} height={30} alt={name} />
+            <Image src={icon} width={50} height={50} alt={name} />
           </Badge>
         </HoverCardTrigger>
         <HoverCardContent>{description}</HoverCardContent>

@@ -27,7 +27,7 @@ export default function ProjectsCard({
       </Link>
 
       <div className="flex  items-center justify-between gap-x-6 w-full  ">
-        <div className="flex justify-between w-[90%] ">
+        <div className="flex justify-between w-[100%] ">
           <div className="flex flex-col gap-y-2">
             <h3 className="text-semibold text-lg mt-4">Tecnologia usadas:</h3>
 
@@ -44,6 +44,7 @@ export default function ProjectsCard({
           </div>
           <div className="flex items-center">
             <Link
+              prefetch={true}
               href="/proyectos/[id]"
               as={`/proyectos/${uid}`}
               className="bg-zinc-800 text-zinc-200 text-md w-fit px-2 py-1 rounded-xl border-2 border-zinc-200 hover:bg-zinc-200 hover:text-zinc-800 transition-all duration-200 "

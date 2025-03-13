@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   ClerkProvider,
@@ -17,31 +18,41 @@ export default async function NavBar() {
     <div className="flex">
       <nav className="flex items-center justify-between h-14 py-4 px-6 bg-zinc-300 w-1/2 mx-auto mt-8 rounded-2xl ">
         <div className="flex items-center gap-x-2">
-          <Avatar className="w-18 h-18 border-4 border-zinc-400">
-            <AvatarImage
-              className="object-cover"
-              src="/images/nelson_rivera.jpg"
-              alt="Nelson Rivera"
-            />
-          </Avatar>
+          <Link href={"/"} prefetch={true}>
+            <Avatar className="w-18 h-18 border-4 border-zinc-400">
+              <AvatarImage
+                className="object-cover"
+                src="/images/nelson_rivera.jpg"
+                alt="Nelson Rivera"
+              />
+            </Avatar>
+          </Link>
           <h1 className="text-lg font-bold text-zinc-800">Nelson Rivera</h1>
         </div>
         <div className="flex items-center">
           <ul className="flex items-center space-x-6">
             <li>
-              <a href="#about" className="text-zinc-800 text-lg">
-                Sobre mi
-              </a>
+              <Link prefetch={true} href="/" className="text-zinc-800 text-lg">
+                Reserva Cita
+              </Link>
             </li>
             <li>
-              <a href="/proyectos" className="text-zinc-800 text-lg">
+              <Link
+                prefetch={true}
+                href="/proyectos"
+                className="text-zinc-800 text-lg"
+              >
                 Proyectos
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#contact" className="text-zinc-800 text-lg">
+              <Link
+                prefetch={true}
+                href="/contacto"
+                className="text-zinc-800 text-lg"
+              >
                 Contacto
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
