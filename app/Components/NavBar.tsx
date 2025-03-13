@@ -60,7 +60,9 @@ export default async function NavBar() {
                 <UserButton />
               </SignedIn>
             ) : (
-              <SignUpButton className="text-zinc-200 bg-zinc-800 text-lg px-2 py-1 rounded-lg" />
+              <div className="text-zinc-200 bg-zinc-800 text-lg px-2 py-1 rounded-lg">
+                <SignUpButton />
+              </div>
             )}
           </ClerkProvider>
         </div>
