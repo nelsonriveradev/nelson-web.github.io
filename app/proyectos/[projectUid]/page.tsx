@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
 interface ProjectDetailProps {
-  params: { projectUid: Promise<string> };
+  params: { projectUid: string };
 }
 
 export default async function ProjectDetail({ params }: ProjectDetailProps) {
