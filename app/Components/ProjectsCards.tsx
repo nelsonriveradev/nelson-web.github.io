@@ -3,12 +3,10 @@
 import { ProjectsData } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function ProjectsCard({
   uid,
   name,
-  caseContent,
   link,
   img,
   toolsUse,

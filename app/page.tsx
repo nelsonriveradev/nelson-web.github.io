@@ -1,8 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
-import { cookies } from "next/headers";
 
 import Image from "next/image";
-import NavBar from "./Components/NavBar";
 import SocialsLinks from "./Components/SocialsLinks";
 import Skills from "./Components/Skills";
 import ProjectsCard from "./Components/ProjectsCards";

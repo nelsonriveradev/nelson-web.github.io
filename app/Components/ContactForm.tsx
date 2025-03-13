@@ -85,11 +85,12 @@ export default function ContactForm() {
         error: false,
         isSubmitting: false,
       });
-    } catch (error: any) {
+    } catch (error) {
       console.error(error);
       setFormState({
         message:
-          error.message || "Error al enviar el mensaje. Intente nuevamente.",
+          (error as Error).message ||
+          "Error al enviar el mensaje. Intente nuevamente.",
         success: false,
         error: true,
         isSubmitting: false,

@@ -3,7 +3,7 @@ import { ContactFormData } from "@/app/Components/ContactForm";
 
 export async function submitContact(dataForm: ContactFormData) {
   const supabase = await createClient();
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from("ContactForm")
     .insert([
       {
