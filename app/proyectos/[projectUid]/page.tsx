@@ -7,7 +7,7 @@ import rehypeRaw from "rehype-raw";
 export default async function ProjectDetail({
   params,
 }: {
-  params: { projectUid: Promise<string> };
+  params: { projectUid: Promise<any> };
 }) {
   const { projectUid } = params;
   console.log("Received projectUid:", projectUid); // Debugging line
