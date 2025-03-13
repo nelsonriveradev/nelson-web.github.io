@@ -6,7 +6,6 @@ import Skills from "./Components/Skills";
 import ProjectsCard from "./Components/ProjectsCards";
 
 //data
-import { projects } from "@/lib/data";
 
 export default async function Home() {
   const supabase = await createClient();
