@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "./Components/NavBar";
+import { auth } from "@clerk/nextjs/server";
 
 import { ClerkProvider } from "@clerk/nextjs";
 
@@ -25,19 +26,26 @@ export const metadata: Metadata = {
   description: "My personal developer Website",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { userId } = await auth();
   return (
     <ClerkProvider>
       <html lang="en">
+        <head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+        </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
         >
           <header className="">
-            <NavBar />
+            <NavBar user={userId} />
           </header>
           {children}
         </body>
