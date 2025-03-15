@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "./Components/NavBar";
-import { auth } from "@clerk/nextjs/server";
 
 import { ClerkProvider } from "@clerk/nextjs";
 
@@ -31,7 +30,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { userId } = await auth();
   return (
     <ClerkProvider>
       <html lang="en">
@@ -45,7 +43,7 @@ export default async function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
         >
           <header className="">
-            <NavBar user={userId} />
+            <NavBar />
           </header>
           {children}
         </body>

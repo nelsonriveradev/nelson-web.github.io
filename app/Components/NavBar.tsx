@@ -7,14 +7,15 @@ import {
   SignUpButton,
   SignedIn,
   UserButton,
+  useUser,
 } from "@clerk/nextjs";
 import { useState } from "react";
-interface NavBarProps {
-  user: string | null;
-}
-export default function NavBar({ user }: NavBarProps) {
-  const userId = user;
+// interface NavBarProps {
+//   user: string | null;
+// }
+export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { isSignedIn, user, isLoaded } = useUser();
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
@@ -68,7 +69,7 @@ export default function NavBar({ user }: NavBarProps) {
           </div>
           <div className="hover:transform hover:scale-110 transition-transform ease-in-out">
             <ClerkProvider>
-              {userId ? (
+              {isSignedIn ? (
                 <SignedIn>
                   <UserButton />
                 </SignedIn>
@@ -145,7 +146,7 @@ export default function NavBar({ user }: NavBarProps) {
         </div>
         <div className="hover:transform hover:scale-110 transition-transform ease-in-out">
           <ClerkProvider>
-            {userId ? (
+            {isSignedIn ? (
               <SignedIn>
                 <UserButton />
               </SignedIn>
