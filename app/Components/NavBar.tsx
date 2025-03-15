@@ -107,7 +107,7 @@ export default function NavBar() {
             <Avatar className="w-18 h-18 border-4 border-zinc-400">
               <AvatarImage
                 className="object-cover"
-                src="/images/nelson_rivera.jpg"
+                src="https://cifrerlklfctbkammxhi.supabase.co/storage/v1/object/public/photos//nelson_1.jpg"
                 alt="Nelson Rivera"
               />
               <AvatarFallback className="text-zinc-800">NR</AvatarFallback>
