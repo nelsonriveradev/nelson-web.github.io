@@ -41,7 +41,7 @@ export default function NavBar() {
               <li>
                 <Link
                   prefetch={true}
-                  href="/"
+                  href="/Reservar"
                   className="text-zinc-800 text-lg"
                 >
                   Reserva Cita
@@ -71,7 +71,12 @@ export default function NavBar() {
             <ClerkProvider>
               {isSignedIn ? (
                 <SignedIn>
-                  <UserButton />
+                  <div
+                    className="mx-auto mt-6 text-center scale-170
+                  "
+                  >
+                    <UserButton />
+                  </div>
                 </SignedIn>
               ) : (
                 <div className="text-center w-[50%] mx-auto mt-4 text-zinc-200 bg-zinc-800 text-lg px-2 py-1 rounded-lg">
@@ -120,7 +125,11 @@ export default function NavBar() {
         <div className="flex items-center">
           <ul className="flex items-center space-x-6">
             <li>
-              <Link prefetch={true} href="/" className="text-zinc-800 text-lg">
+              <Link
+                prefetch={true}
+                href="/Reservar"
+                className="text-zinc-800 text-lg"
+              >
                 Reserva Cita
               </Link>
             </li>
@@ -133,6 +142,7 @@ export default function NavBar() {
                 Proyectos
               </Link>
             </li>
+
             <li>
               <Link
                 prefetch={true}
