@@ -13,7 +13,7 @@ export default async function Home() {
   return (
     <div className="bg-zinc-800 w-[90%] mx-auto ">
       {/* Hero */}
-      <div className="grid grid-cols-2  h-auto mt-10  ">
+      <div className="grid grid-row-2 md:grid-cols-2  gap-y-2 h-auto mt-10  ">
         <div className="  flex items-center w-[95%]">
           <div className="flex flex-col justify-center h-full  text-center gap-y-2">
             <h1 className="text-zinc-300 text-6xl font-bold">
@@ -41,7 +41,7 @@ export default async function Home() {
 
       {/* About me */}
       <div>
-        <div className="grid grid-cols-2 gap-x-6 mt-10">
+        <div className="grid grid-row-2 md:gap-x-6 mt-10">
           <div className="w-5/6 bg-white text-zinc-800 rounded-2xl p-4">
             <h2 className="text-zinc-800 text-4xl font-bold">Sobre mí</h2>
             <p className="text-zinc-800 text-lg mt-2">

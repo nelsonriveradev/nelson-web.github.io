@@ -25,11 +25,11 @@ export default function ProjectsCard({
       </Link>
 
       <div className="flex  items-center justify-between gap-x-6 w-full  ">
-        <div className="flex justify-between w-[100%] ">
+        <div className="flex flex-col md:flex-row gap-y-2 justify-between w-[100%] ">
           <div className="flex flex-col gap-y-2">
             <h3 className="text-semibold text-lg mt-4">Tecnologia usadas:</h3>
 
-            <ul className="flex gap-x-2">
+            <ul className="flex gap-x-2 flex-wrap">
               {toolsUse.map((tool, index) => (
                 <li
                   className="bg-zinc-300 text-zinc-800 px-2 py-1 rounded-xl text-xs"
