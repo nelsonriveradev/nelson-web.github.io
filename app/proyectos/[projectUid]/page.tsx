@@ -1,4 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
+import SlideShow from "@/app/Components/SlideShow";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -40,13 +41,7 @@ export default async function ProjectDetail({
         <h1 className="text-4xl text-bold">{response.name}</h1>
         <p>{response.description}</p>
 
-        <Image
-          className="rounded-lg border-2 border-zinc-200 p-2 bg-zinc-200 drop-shadow-md mx-auto self-center"
-          src={response.img}
-          alt={response.name}
-          width={600}
-          height={600}
-        />
+        <SlideShow images={response.screenshots} />
         <h3 className="text-semibold text-lg mt-4">Tecnologia usadas:</h3>
 
         <ul className="flex gap-x-2">
@@ -60,7 +55,7 @@ export default async function ProjectDetail({
           ))}
         </ul>
       </div>
-      <div className="prose h-[500px] overflow-y-scroll text-zinc-800 bg-zinc-200 w-[60%] p-4 rounded-xl mx-auto mt-10">
+      <div className="prose h-[500px] overflow-y-scroll text-zinc-800 bg-zinc-200 w-[70%]  p-4 rounded-xl mx-auto mt-10">
         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
           {response.caseContent}
         </ReactMarkdown>
