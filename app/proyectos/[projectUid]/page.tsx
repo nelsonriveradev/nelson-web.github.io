@@ -41,7 +41,7 @@ export default async function ProjectDetail({
         <h1 className="text-4xl text-bold">{response.name}</h1>
         <p>{response.description}</p>
 
-        <SlideShow images={response.screenshots} />
+        <SlideShow images={response.screenshots} link={response.link} />
         <h3 className="text-semibold text-lg mt-4">Tecnologia usadas:</h3>
 
         <ul className="flex gap-x-2">
@@ -55,7 +55,7 @@ export default async function ProjectDetail({
           ))}
         </ul>
       </div>
-      <div className="prose h-[500px] overflow-y-scroll text-zinc-800 bg-zinc-200 w-[70%]  p-4 rounded-xl mx-auto mt-10">
+      <div className="prose h-[500px] overflow-y-scroll text-zinc-800 bg-zinc-200 w-[100%] md:w-[80%] p-4 rounded-xl mx-auto mt-10">
         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
           {response.caseContent}
         </ReactMarkdown>
