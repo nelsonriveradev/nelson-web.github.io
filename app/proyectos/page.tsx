@@ -4,7 +4,6 @@ import ProjectsCard from "../Components/ProjectsCards";
 export default async function Proyectos() {
   const supabase = await createClient();
   const { data } = await supabase.from("proyectos").select();
-  console.log(data);
   return (
     <div className="w-[90%] mx-auto">
       <div className="flex flex-col items-center">
