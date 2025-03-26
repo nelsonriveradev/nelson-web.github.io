@@ -1,3 +1,4 @@
+"use server";
 import { createClient } from "@/utils/supabase/server";
 
 import Image from "next/image";
