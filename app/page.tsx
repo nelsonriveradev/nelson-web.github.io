@@ -17,7 +17,7 @@ export default async function Home() {
         <div className="  flex items-center w-[95%]">
           <div className="flex flex-col justify-center h-full  text-center gap-y-2">
             <h1 className="text-zinc-300 text-6xl font-bold">
-              Hola, soy Nelson Rivera
+              Listo para brindar valor a tu proyecto
             </h1>
             <SocialsLinks />
 
