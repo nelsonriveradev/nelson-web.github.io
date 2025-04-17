@@ -4,7 +4,7 @@ import "./globals.css";
 import NavBar from "./Components/NavBar";
 
 import { ClerkProvider } from "@clerk/nextjs";
-
+import Footer from "./Components/Footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -49,6 +49,9 @@ export default async function RootLayout({
             <NavBar />
           </header>
           {children}
+          <footer>
+            <Footer />
+          </footer>
         </body>
       </html>
     </ClerkProvider>

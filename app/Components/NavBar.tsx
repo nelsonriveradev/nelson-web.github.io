@@ -41,10 +41,10 @@ export default function NavBar() {
               <li>
                 <Link
                   prefetch={true}
-                  href="/Reservar"
+                  href="/Servicios"
                   className="text-zinc-800 text-lg"
                 >
-                  Reserva Cita
+                  Servicios
                 </Link>
               </li>
               <li>
@@ -127,10 +127,10 @@ export default function NavBar() {
             <li>
               <Link
                 prefetch={true}
-                href="/Reservar"
+                href="/Servicios"
                 className="text-zinc-800 text-lg"
               >
-                Reserva Cita
+                Servicios
               </Link>
             </li>
             <li>
