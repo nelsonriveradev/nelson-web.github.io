@@ -1,171 +1,141 @@
 "use client";
 
-import { createClient } from "@/utils/supabase/client";
-import { FormEvent, useState } from "react";
+import { useActionState, useEffect, useRef } from "react";
+import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
+import { submitContact } from "@/lib/actions/submitContact";
+import { initialContactState } from "@/lib/contact";
 
-export interface ContactFormData {
-  name: string;
-  email: string;
-  message: string;
-}
-
-interface FormState {
-  message: string;
-  success: boolean;
-  error: boolean;
-  isSubmitting: boolean;
-}
+const inputClasses =
+  "w-full rounded-xl border border-transparent bg-muted px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors focus:border-sage focus:bg-card focus:outline-none focus:ring-2 focus:ring-sage/30";
 
 export default function ContactForm() {
-  // Form state management
-  const [formState, setFormState] = useState<FormState>({
-    message: "",
-    success: false,
-    error: false,
-    isSubmitting: false,
-  });
+  const formRef = useRef<HTMLFormElement>(null);
+  const [state, formAction, isPending] = useActionState(
+    submitContact,
+    initialContactState,
+  );
 
-  // Form data state
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  // Handle input change
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  // Handle form submission
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormState((prev) => ({ ...prev, isSubmitting: true }));
-
-    try {
-      const supabase = createClient();
-
-      // Basic input sanitization (example)
-      const sanitizedName = formData.name.trim();
-      const sanitizedEmail = formData.email.trim();
-      const sanitizedMessage = formData.message.trim();
-
-      // Email validation (basic)
-      if (!isValidEmail(sanitizedEmail)) {
-        throw new Error("Invalid email format");
-      }
-
-      const { error } = await supabase.from("ContactForm").insert({
-        name: sanitizedName,
-        email: sanitizedEmail,
-        message: sanitizedMessage,
-      });
-
-      if (error) throw error;
-
-      // Reset form data
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
-
-      // Reset form
-      (e.target as HTMLFormElement).reset();
-
-      setFormState({
-        message: "Mensaje enviado con éxito",
-        success: true,
-        error: false,
-        isSubmitting: false,
-      });
-    } catch (error) {
-      console.error(error);
-      setFormState({
-        message:
-          (error as Error).message ||
-          "Error al enviar el mensaje. Intente nuevamente.",
-        success: false,
-        error: true,
-        isSubmitting: false,
-      });
-    } finally {
-      setFormState((prev) => ({ ...prev, isSubmitting: false }));
-    }
-  };
-
-  // Basic email validation function
-  const isValidEmail = (email: string): boolean => {
-    // A more robust email validation library is recommended for production
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+  useEffect(() => {
+    if (state.status === "success") formRef.current?.reset();
+  }, [state]);
 
   return (
-    <div className="p-6 w-[60%] rounded-2xl bg-zinc-700">
-      {formState.error && (
-        <p className="text-red-500 mb-4">{formState.message}</p>
-      )}
-      {formState.success && (
-        <p className="text-green-500 mb-4">{formState.message}</p>
-      )}
-
-      <form
-        className="flex flex-col gap-y-2 items-center"
-        onSubmit={handleSubmit}
-      >
-        <div className="flex flex-col w-full">
-          <label htmlFor="name">Nombre:</label>
+    <form
+      ref={formRef}
+      action={formAction}
+      className="rounded-3xl border border-border bg-card p-6 shadow-xl shadow-teal/5 sm:p-8 md:p-10"
+    >
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor="website">Sitio web</label>
           <input
-            className="border-2 border-zinc-400 rounded-md px-2 py-1"
+            type="text"
+            id="website"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="name"
+            className="mb-2 block text-sm font-semibold text-foreground"
+          >
+            Nombre
+          </label>
+          <input
             type="text"
             id="name"
             name="name"
-            placeholder="Juan Del Pueblo"
-            value={formData.name}
-            onChange={handleInputChange}
             required
+            maxLength={120}
+            autoComplete="name"
+            placeholder="¿Cómo te llamas?"
+            className={inputClasses}
           />
         </div>
-        <div className="flex flex-col w-full">
-          <label htmlFor="email">Email:</label>
+
+        <div>
+          <label
+            htmlFor="email"
+            className="mb-2 block text-sm font-semibold text-foreground"
+          >
+            Correo electrónico
+          </label>
           <input
-            className="border-2 border-zinc-400 rounded-md px-2 py-1"
             type="email"
             id="email"
             name="email"
-            placeholder="correo@electronico.com"
-            value={formData.email}
-            onChange={handleInputChange}
             required
+            maxLength={200}
+            autoComplete="email"
+            placeholder="tu@correo.com"
+            className={inputClasses}
           />
         </div>
-        <div className="flex flex-col w-full">
-          <label htmlFor="message">Mensaje:</label>
-          <textarea
-            className="border-2 border-zinc-400 rounded-md px-2 py-1 w-[full]"
-            id="message"
-            name="message"
-            placeholder="Escribe tu mensaje..."
-            value={formData.message}
-            onChange={handleInputChange}
-            required
-          ></textarea>
-        </div>
-        <button
-          className="mt-2 border-2 border-zinc-200 px-2 py-1 rounded-md disabled:opacity-50"
-          type="submit"
-          disabled={formState.isSubmitting}
+      </div>
+
+      <div className="mt-5">
+        <label
+          htmlFor="message"
+          className="mb-2 block text-sm font-semibold text-foreground"
         >
-          {formState.isSubmitting ? "Enviando..." : "Enviar"}
-        </button>
-      </form>
-    </div>
+          Mensaje
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows={6}
+          minLength={10}
+          maxLength={5000}
+          placeholder="Cuéntame sobre tu proyecto, idea o lo que necesitas..."
+          className={`${inputClasses} resize-none`}
+        />
+      </div>
+
+      <div aria-live="polite" className="mt-5">
+        {state.status !== "idle" ? (
+          <p
+            role={state.status === "error" ? "alert" : "status"}
+            className={`flex items-start gap-2 rounded-xl border px-4 py-3 text-sm ${
+              state.status === "success"
+                ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+                : "border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-300"
+            }`}
+          >
+            {state.status === "success" ? (
+              <CheckCircle2 className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+            ) : (
+              <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+            )}
+            {state.message}
+          </p>
+        ) : null}
+      </div>
+
+      <button
+        type="submit"
+        disabled={isPending}
+        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+      >
+        {isPending ? (
+          <>
+            <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+            Enviando...
+          </>
+        ) : (
+          <>
+            Enviar mensaje
+            <Send className="size-4" aria-hidden="true" />
+          </>
+        )}
+      </button>
+
+      <p className="mt-4 text-xs text-muted-foreground">
+        Tus datos solo se usan para responder a tu mensaje.
+      </p>
+    </form>
   );
 }

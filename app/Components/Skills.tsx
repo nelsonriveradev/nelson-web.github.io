@@ -1,54 +1,90 @@
-import SkillBadge from "./SkillBadge";
+import {
+  Atom,
+  Braces,
+  Code2,
+  Database,
+  Flame,
+  GitBranch,
+  Layers,
+  Wind,
+} from "lucide-react";
 
-type Skill = {
-  name: string;
-  icon: string;
-  description: string;
-};
-const skills: Skill[] = [
+const skills = [
   {
     name: "React",
-    icon: "/Icons/dev/icons8-react-96.png",
+    icon: Atom,
     description:
-      "Tengo un año de experiencia trabajando con React. Mi primer proyecto fue una pagina web de blog",
+      "Un año de experiencia construyendo interfaces con componentes reutilizables.",
   },
   {
     name: "Next.js",
-    icon: "/Icons/dev/nextjs.svg",
+    icon: Layers,
     description:
-      "Esta herramienta es la que mayor estoy utilizando actualmente ya que se integra React y es un framework completo y moderno que puedo usar mi proyecto Yaya AI se basa en Next.js",
+      "Mi framework principal para crear aplicaciones full-stack modernas con React.",
   },
   {
-    name: "Firebase",
-    icon: "/Icons/dev/icons8-firebase-aFirebase-96.png",
+    name: "TypeScript",
+    icon: Braces,
     description:
-      "Este backend es el que utilizo cuando necesito una base de datos en tiempo real o una autenticación de usuario y puedo manejar mi data de forma flexible.",
+      "Tipado estático para escribir código más seguro y mantenible.",
   },
   {
     name: "Tailwind CSS",
-    icon: "/Icons/dev/icons8-tailwind-css-96.png",
+    icon: Wind,
     description:
-      "Ultimamente he estado utilizando Tailwind CSS para mis proyectos ya que me permite hacer un diseño responsive y moderno de forma rápida y sencilla, y sobre todo no crear tantos archivos de estilo.",
+      "Diseños responsive y consistentes directamente desde las clases utilitarias.",
   },
   {
     name: "JavaScript",
-    icon: "/Icons/dev/icons8-javascript-96.png",
+    icon: Code2,
     description:
-      "Aunque al principio me reusaba en aprender javascript, ahora lo utilizo en mis proyectos para hacerlos más dinámicos y atractivos. No es hasta que empecé a trabajar con React que me di cuenta de la importancia de este lenguaje. En estos momentos me encuentro aprendiendo TypeScript.",
+      "El lenguaje que uso a diario para dar interactividad a los proyectos.",
+  },
+  {
+    name: "Supabase",
+    icon: Database,
+    description:
+      "Base de datos, autenticación y storage para aplicaciones modernas.",
+  },
+  {
+    name: "Firebase",
+    icon: Flame,
+    description:
+      "Backend en tiempo real y autenticación para prototipos y productos.",
+  },
+  {
+    name: "Git",
+    icon: GitBranch,
+    description:
+      "Control de versiones y trabajo colaborativo en cada proyecto.",
   },
 ];
 
-export default function Skills() {
+type SkillsProps = {
+  className?: string;
+};
+
+export default function Skills({ className = "" }: SkillsProps) {
   return (
-    <div className="flex items-center justify-center gap-x-4">
-      {skills.map((skill) => (
-        <SkillBadge
-          key={skill.name}
-          name={skill.name}
-          icon={skill.icon}
-          description={skill.description}
-        />
-      ))}
-    </div>
+    <ul className={`grid grid-cols-2 gap-3 sm:grid-cols-3 ${className}`}>
+      {skills.map((skill) => {
+        const Icon = skill.icon;
+
+        return (
+          <li key={skill.name}>
+            <div
+              title={skill.description}
+              className="group flex h-full items-center gap-2.5 rounded-xl border border-transparent bg-muted px-3 py-3 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-sage/60 hover:bg-primary hover:text-primary-foreground"
+            >
+              <Icon
+                className="size-4 shrink-0 text-primary transition-colors group-hover:text-primary-foreground"
+                aria-hidden="true"
+              />
+              <span>{skill.name}</span>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
   );
 }

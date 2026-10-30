@@ -1,18 +1,16 @@
-"use client";
-import ContactForm from "../Components/ContactForm";
+import type { Metadata } from "next";
+import ContactSection from "../Components/ContactSection";
+
+export const metadata: Metadata = {
+  title: "Contacto",
+  description:
+    "Escríbeme para conversar sobre tu próximo sitio web, aplicación o colaboración.",
+};
+
 export default function Contacto() {
   return (
-    <div className="">
-      <h1 className="text-4xl font-bold text-center mt-8">Contacto</h1>
-      <div className="flex flex-col items-center justify-center mt-8">
-        <p className="text-lg text-center">
-          Si deseas contactarme, puedes hacerlo a través de mi correo
-          electrónico:
-        </p>
-        {/* Contact Form */}
-
-        <ContactForm />
-      </div>
+    <div className="pt-16">
+      <ContactSection headingLevel="h1" />
     </div>
   );
 }
